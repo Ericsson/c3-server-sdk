@@ -1,28 +1,25 @@
-How to use the API
+How to use the SDK
 ===================
 
-Generate a random string in base64:
+
+Install via git clone
+
 ```bash
-openssl rand -base64 32
+$ git clone https://github.com/Ericsson/c3-server-sdk.git
+$ cd c3-server-sdk
+$ npm install
 ```
 
-Call the API
+## Example
+
 ```javascript
-client = new Client("iYfRCKGCCXF2Sji0w1yIwKoK4MgP9EUV=");
+client = new Client("iYfRCKGCCXF2Sji0w1yIwKoK4MgP9EUV=", "ServerUrl");
 ```
 
 
 ```javascript
-client.getOrCreateUser("Negi", "fazeli", 233).
+client.getOrCreateUser("Negi",  2).
 then(function(result){console.log(result)},
 function(error){console.log("error is: ", error)});
 
 ```
-
-
-
-
-How to make a client which can be used in Browser
-=================================================
- npm install -g browserify
- browserify --entry browserClient.js --outfile as-Client-built.js
