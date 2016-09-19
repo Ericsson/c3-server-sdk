@@ -13,12 +13,12 @@ $ npm install
 ## Example
 
 ```javascript
-client = new Client("The secret token provided by server", "ServerUrl");
+client = new Client({"secret": "The secret token provided by server", "ServerUrl": "https://apServer"});
 ```
 
 
 ```javascript
-client.getOrCreateUser("Alice",  100).
+client.getOrCreateUser({"localId": "Alice",  "accessTokenDurationSeconds": 100}).
 then(function(result){console.log(result)},
 function(error){console.log("error is: ", error)});
 ```
