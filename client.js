@@ -1,18 +1,17 @@
 
 var request = require("request");
 
-function Client(secret, serverUrl){
+function Client({secret, serverUrl}){
     this.secret = secret;
     this.baseUrl =  serverUrl
 };
 
-
-Client.prototype.getOrCreateUser = function(Name, accessTokenDurationHour){
+Client.prototype.getOrCreateUser = function({Name, accessTokenDurationSeconds}){
     var that = this;
     return new Promise(function(resolve, reject){
     var payload = {
         "localId": Name,
-        "accessTokenDurationHour": accessTokenDurationHour
+        "accessTokenDurationSeconds": accessTokenDurationSeconds
     };
     request({url: that.baseUrl + "v1/upsertUser",
         method: "POST",
@@ -28,14 +27,14 @@ Client.prototype.getOrCreateUser = function(Name, accessTokenDurationHour){
     })
 }
 
-Client.prototype.createRoom = function() {
+Client.prototype.createRoom = function({options}) {
     var that = this;
     return new Promise(function(resolve, reject){
     request({url: that.baseUrl + "v1/createRoom",
         method: "POST",
         headers: {"astoken": that.secret},
         json: true,
-        body: payload
+        body: options
     }, function (error, response, body){
             if (error) {
                 return reject(error);
@@ -46,5 +45,3 @@ Client.prototype.createRoom = function() {
 };
 
 module.exports = Client;
-
-
