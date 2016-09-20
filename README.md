@@ -1,5 +1,4 @@
-How to use the SDK
-===================
+# How to use the SDK
 
 
 Install via git clone
@@ -30,7 +29,7 @@ function(error){console.log("error is: ", error)});
 ```json
     {
         "localId": "desired username",
-        "serverUrl": "the url to the server"
+        "accessTokenDurationSeconds": "The duration which the access token should be valid"
     }
 ```
 
@@ -43,6 +42,7 @@ function(error){console.log("error is: ", error)});
     }
 ```
 or
+
 
 error
 
@@ -63,17 +63,21 @@ The options contains room properties. All of the parameters are optional.
                     "stateKey": "An optional state key",
                     "content": "The content of the state."
                     },
-        "creationContent":"Is an object adding extra properties"
+        "creationContent":"Is an object adding extra properties",
         "historyVisibility": "The desired history visibility of the room.",
-        "joinRule": "The desired join rule of the room.public room will use the 'open' join rule while a private room will user 'invite'"
+        "joinRule": "The room.public room will use the 'open' join rule while a private room will user 'invite'",
+        "guestAccessRule": "The desired guest access rule of the room"
     }
 ```
 
 #### Returns
 ```json
-{"roomId": "!sefiuhWgwghwWgh:example.com"}
+    {
+        "roomId": "!sefiuhWgwghwWgh:example.com"
+    }
 ```
 or
+
 
 error
 
