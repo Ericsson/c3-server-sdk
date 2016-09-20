@@ -1,15 +1,15 @@
-# How to use the SDK
+# Introduction
+
+C3 server sdk is responsible for giving access to some of our server side APIs. The sdks are available in node, python and GO languages.
 
 
-Install via git clone
+# Example
 
-```bash
-$ git clone https://github.com/Ericsson/c3-server-sdk.git
-$ cd c3-server-sdk
-$ npm install
-```
+Here there will be examples on how to use the sdks but for more information on how to install them please navigate to the corresponding directory.
 
-## Example
+
+### node
+Here is an example on how to create/get a user.
 
 ```javascript
 client = new Client({"secret": "The secret token provided by server", "serverUrl": "https://apServer"});
@@ -21,64 +21,3 @@ client.getOrCreateUser({"localId": "Alice",  "accessTokenDurationSeconds": 100})
 then(function(result){console.log(result)},
 function(error){console.log("error is: ", error)});
 ```
-
-
-# getOrCreateUser(options)
-
-#### options
-```json
-    {
-        "localId": "desired username",
-        "accessTokenDurationSeconds": "The duration which the access token should be valid"
-    }
-```
-
-#### Returns
-
-```json
-    {
-        "accessToken": "abc123",
-        "userId": "@id:serverName",
-    }
-```
-or
-
-
-error
-
-# createRoom(options)
-create a new room.
-
-#### options
-The options contains room properties. All of the parameters are optional.
-
-```json
-    {
-        "invite": "A single or list of users to invite when creating the room.",
-        "name": "The display name of the room.",
-        "type": "The type that should be assigned to the room.",
-        "alias": "A local alias for the room id.",
-        "state": {
-                    "type": "The type of the state.",
-                    "stateKey": "An optional state key",
-                    "content": "The content of the state."
-                    },
-        "creationContent":"Is an object adding extra properties",
-        "historyVisibility": "The desired history visibility of the room.",
-        "joinRule": "The room.public room will use the 'open' join rule while a private room will user 'invite'",
-        "guestAccessRule": "The desired guest access rule of the room"
-    }
-```
-
-#### Returns
-```json
-    {
-        "roomId": "!sefiuhWgwghwWgh:example.com"
-    }
-```
-or
-
-
-error
-
-
