@@ -9,7 +9,9 @@ $ pip install -r requirements.txt
 ## Example
 
 ```python
-client = new Client("The secret token provided by server", "https://apServer")
+from client import Client
+
+client = Client("The secret token provided by server", "https://apServer")
 ```
 
 
