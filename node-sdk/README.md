@@ -17,7 +17,7 @@ client = new Client({"secret": "The secret token provided by server", "serverUrl
 
 
 ```javascript
-client.getOrCreateUser({"localId": "Alice",  "accessTokenDurationSeconds": 100}).
+client.getOrCreateUser({"localId": "Alice"}).
 then(function(result){console.log(result)},
 function(error){console.log("error is: ", error)});
 ```
@@ -28,8 +28,7 @@ function(error){console.log("error is: ", error)});
 #### options
 ```json
     {
-        "localId": "desired username",
-        "accessTokenDurationSeconds": "The duration which the access token should be valid"
+        "localId": "desired username"
     }
 ```
 
@@ -69,6 +68,53 @@ The options contains room properties. All of the parameters are optional.
         "guestAccessRule": "The desired guest access rule of the room"
     }
 ```
+
+#### Example
+```javascript
+    client.createRoom({"creation_content": {
+              "cctRoomType": "some.meeting"},
+            "initial_state": [{
+              "type": "m.room.join_rules",
+              "content": {
+                "join_rule": "invite"
+              }
+            }, {
+              "type": "some.customer.dialog",
+              "content": {
+                "dialog": null,
+                "params": {}
+              }
+            }, {
+              "type": "m.room.power_levels",
+              "content": {
+                "users": {
+                  "@user-service:user": 100
+                },
+                "users_default": 0,
+                "events": {
+                  "m.room.name": 100,
+                  "m.room.power_levels": 100,
+                  "m.room.history_visibility": 100,
+                  "m.room.canonical_alias": 100,
+                  "m.room.avatar": 100,
+                  "m.room.join_rule": 100,
+                  "seb.customer.dialog": 0
+                },
+                "events_default": 0,
+                "state_default": 100,
+                "kick": 50,
+                "redact": 50,
+                "invite": 100
+              }
+            }],
+            "visibility": "private",
+            "invite": ["@localId:asAuth"],
+            "room_alias_name": "myRoom"
+          }).
+        then(function(result){console.log(result)},
+         function(error){console.log("error is: ", error)})
+```
+
 
 #### Returns
 ```json
