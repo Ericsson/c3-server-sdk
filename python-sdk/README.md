@@ -9,14 +9,14 @@ $ pip install -r requirements.txt
 ## Example
 
 ```python
-from client import Client
+    from client import Client
 
-client = Client("The secret token provided by server", "https://apServer")
+    client = Client("The secret token provided by server", "https://apServer")
 ```
 
 
 ```python
-client.get_or_create_user({"localId": "Alice",  "accessTokenDurationSeconds": 100})
+    client.get_or_create_user({"localId": "Alice"})
 ```
 
 
@@ -25,8 +25,7 @@ client.get_or_create_user({"localId": "Alice",  "accessTokenDurationSeconds": 10
 #### options
 ```json
     {
-        "localId": "desired username",
-        "accessTokenDurationSeconds": "The duration which the access token should be valid"
+        "localId": "desired username"
     }
 ```
 
@@ -49,7 +48,7 @@ create a new room.
 
 
 ```python
-client.create_room()
+    client.create_room(options)
 ```
 #### options
 The options contains room properties. All of the parameters are optional.
@@ -72,6 +71,50 @@ The options contains room properties. All of the parameters are optional.
     }
 ```
 
+#### Example room creation options
+```javascript
+    {
+        "creation_content": {
+              "cctRoomType": "seb.meeting"},
+            "initial_state": [{
+              "type": "m.room.join_rules",
+              "content": {
+                "join_rule": "invite"
+              }
+            }, {
+              "type": "seb.customer.dialog",
+              "content": {
+                "dialog": None,
+                "params": {}
+              }
+            }, {
+              "type": "m.room.power_levels",
+              "content": {
+                "users": {
+                  "@seb-service:seb": 100
+                },
+                "users_default": 0,
+                "events": {
+                  "m.room.name": 100,
+                  "m.room.power_levels": 100,
+                  "m.room.history_visibility": 100,
+                  "m.room.canonical_alias": 100,
+                  "m.room.avatar": 100,
+                  "m.room.join_rule": 100,
+                  "seb.customer.dialog": 0
+                },
+                "events_default": 0,
+                "state_default": 100,
+                "kick": 50,
+                "redact": 50,
+                "invite": 100
+              }
+            }],
+            "visibility": "private",
+            "invite": ["@localId:asAuth"],
+            "room_alias_name": "negisRoom"
+          }
+```
 #### Returns
 ```json
     ({

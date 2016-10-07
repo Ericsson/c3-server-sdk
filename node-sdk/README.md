@@ -12,14 +12,16 @@ $ npm install
 ## Example
 
 ```javascript
-client = new Client({"secret": "The secret token provided by server", "serverUrl": "https://apServer"});
+    const  Client = require("./client")
+
+    client = new Client({"secret": "Secret token provided by server", "serverUrl": "https://apServer"});
 ```
 
 
 ```javascript
-client.getOrCreateUser({"localId": "Alice"}).
-then(function(result){console.log(result)},
-function(error){console.log("error is: ", error)});
+    client.getOrCreateUser({"localId": "Alice"}).
+    then(function(result){console.log(result)},
+    function(error){console.log("error is: ", error)});
 ```
 
 
@@ -69,26 +71,27 @@ The options contains room properties. All of the parameters are optional.
     }
 ```
 
-#### Example
+#### Example room creation options
 ```javascript
-    client.createRoom({"creation_content": {
-              "cctRoomType": "some.meeting"},
+    {
+        "creation_content": {
+              "cctRoomType": "seb.meeting"},
             "initial_state": [{
               "type": "m.room.join_rules",
               "content": {
                 "join_rule": "invite"
               }
             }, {
-              "type": "some.customer.dialog",
+              "type": "seb.customer.dialog",
               "content": {
-                "dialog": null,
+                "dialog": None,
                 "params": {}
               }
             }, {
               "type": "m.room.power_levels",
               "content": {
                 "users": {
-                  "@user-service:user": 100
+                  "@seb-service:seb": 100
                 },
                 "users_default": 0,
                 "events": {
@@ -109,10 +112,8 @@ The options contains room properties. All of the parameters are optional.
             }],
             "visibility": "private",
             "invite": ["@localId:asAuth"],
-            "room_alias_name": "myRoom"
-          }).
-        then(function(result){console.log(result)},
-         function(error){console.log("error is: ", error)})
+            "room_alias_name": "negisRoom"
+    }
 ```
 
 
@@ -122,6 +123,7 @@ The options contains room properties. All of the parameters are optional.
         "roomId": "!sefiuhWgwghwWgh:example.com"
     }
 ```
+
 or
 
 

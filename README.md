@@ -17,7 +17,7 @@ client = new Client({"secret": "The secret token provided by server", "serverUrl
 
 
 ```javascript
-client.getOrCreateUser({"localId": "Alice",  "accessTokenDurationSeconds": 100}).
+client.getOrCreateUser({"localId": "Alice").
 then(function(result){console.log(result)},
 function(error){console.log("error is: ", error)});
 ```
