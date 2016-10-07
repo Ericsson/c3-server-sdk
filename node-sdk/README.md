@@ -14,7 +14,7 @@ $ npm install
 ```javascript
     const  Client = require("./client")
 
-    client = new Client({"secret": "Secret token provided by server", "serverUrl": "https://apServer"});
+    client = new Client({"secret": "Secret token provided by server", "serverUrl": "https://apServer"})
 ```
 
 
